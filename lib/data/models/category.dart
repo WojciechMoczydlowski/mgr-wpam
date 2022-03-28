@@ -3,8 +3,6 @@ class Category {
   String name;
   String color;
 
-  Category.fromJson(Map json)
-      : id = json["id"],
-        name = json["name"],
-        color = json["color"];
+  Category(
+      {required this.id, required, required this.name, required this.color});
 }

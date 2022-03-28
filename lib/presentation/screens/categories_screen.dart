@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wpam_app/business_logic/cubit/category_cubit.dart';
 import 'package:wpam_app/presentation/widgets/navigation_drawer_widget.dart';
 
+import '../widgets/category_widget.dart';
+
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
 
@@ -19,8 +21,18 @@ class CategoriesScreen extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
+            final test = state.categories;
+            print("asdasd");
+
             return SingleChildScrollView(
-              child: Column(),
+              child: Column(
+                children: state.categories.map((category) {
+                  return CategoryWidget(
+                      id: category.id,
+                      name: category.name,
+                      color: category.color);
+                }).toList(),
+              ),
             );
           },
         ));

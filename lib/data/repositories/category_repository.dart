@@ -8,12 +8,13 @@ class CategoryRepository {
 
   Future<List<Category>> fetchCategories() async {
     try {
-      final Map<String, dynamic> rawCategories =
-          await api.featchRawCategories();
+      final rawCategories = await api.featchRawCategories();
 
-      final List<Category> categories = rawCategories['data'].map((value) {
-        return Category.fromJson(value);
-      });
+      List<Category> categories =
+          List<Category>.from(rawCategories['data'].map((value) {
+        return Category(
+            id: value['id'], name: value['name'], color: value['color']);
+      }));
 
       return categories;
     } catch (e) {
