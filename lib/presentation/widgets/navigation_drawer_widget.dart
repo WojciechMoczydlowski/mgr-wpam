@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wpam_app/presentation/router/routes.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   const NavigationDrawerWidget({Key? key}) : super(key: key);
@@ -14,17 +15,17 @@ class NavigationDrawerWidget extends StatelessWidget {
                 context: context,
                 text: "Strona główna",
                 icon: Icons.home,
-                path: "/"),
+                path: homeRoute),
             buildMenuItem(
                 context: context,
                 text: "Kategorie",
                 icon: Icons.category,
-                path: "/categories"),
+                path: categoriesRoute),
             buildMenuItem(
                 context: context,
                 text: "Statystyki",
                 icon: Icons.stacked_bar_chart_sharp,
-                path: "/stats")
+                path: statsRoute)
           ],
         ),
       ),

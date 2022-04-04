@@ -13,28 +13,29 @@ class CategoriesScreen extends StatelessWidget {
     BlocProvider.of<CategoryCubit>(context).fetchCategories();
 
     return Scaffold(
-        appBar: AppBar(title: const Text("Kategorie")),
-        drawer: const NavigationDrawerWidget(),
-        body: BlocBuilder<CategoryCubit, CategoryState>(
-          builder: (context, state) {
-            if (state is! CategoryLoaded) {
-              return const Center(child: CircularProgressIndicator());
-            }
+      appBar: AppBar(title: const Text("Kategorie")),
+      drawer: const NavigationDrawerWidget(),
+      body: BlocBuilder<CategoryCubit, CategoryState>(
+        builder: (blocContext, state) {
+          if (state is! CategoryLoaded) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-            final test = state.categories;
-            print("asdasd");
-
-            return SingleChildScrollView(
-              child: Column(
-                children: state.categories.map((category) {
-                  return CategoryWidget(
-                      id: category.id,
-                      name: category.name,
-                      color: category.color);
-                }).toList(),
-              ),
-            );
-          },
-        ));
+          return SingleChildScrollView(
+            child: Column(
+              children: state.categories.map((category) {
+                return CategoryWidget(
+                    id: category.id,
+                    name: category.name,
+                    color: category.color);
+              }).toList(),
+            ),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.of(context).pushNamed("");
+      }),
+    );
   }
 }
