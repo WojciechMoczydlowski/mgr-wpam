@@ -1,3 +1,5 @@
+import 'package:uuid/uuid.dart';
+
 import '../data_providers/category_api.dart';
 import '../models/category.dart';
 
@@ -24,9 +26,10 @@ class CategoryRepository {
 
   Future<Category> addCategory(String name, String color) async {
     try {
+      const uuid = Uuid();
+
       List<Category> categories = await fetchCategories();
-      Category newCategory =
-          Category(id: "Example id", color: color, name: name);
+      Category newCategory = Category(id: uuid.v1(), color: color, name: name);
 
       categories.add(newCategory);
 
