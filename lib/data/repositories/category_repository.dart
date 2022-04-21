@@ -21,4 +21,22 @@ class CategoryRepository {
       return [];
     }
   }
+
+  Future<Category> addCategory(String name, String color) async {
+    try {
+      List<Category> categories = await fetchCategories();
+      Category newCategory =
+          Category(id: "Example id", color: color, name: name);
+
+      categories.add(newCategory);
+
+      Map<String, Object?> categoriesMap = Map<String, Object?>.from(
+          {"data": categories.map((c) => c.toJson()).toList()});
+
+      await api.saveCategories(categoriesMap);
+      return newCategory;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

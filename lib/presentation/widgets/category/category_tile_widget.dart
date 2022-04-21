@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CategoryWidget extends StatelessWidget {
+class CategoryTileWidget extends StatelessWidget {
   final String id;
   final String name;
   final String color;
 
-  const CategoryWidget(
+  const CategoryTileWidget(
       {Key? key, required this.id, required this.name, required this.color})
       : super(key: key);
 

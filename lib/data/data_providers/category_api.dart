@@ -9,4 +9,11 @@ class CategoryAPI {
         .get()
         .then((value) => value.data() as Map<String, dynamic>);
   }
+
+  Future<void> saveCategories(Map<String, Object?> data) async {
+    return FirebaseFirestore.instance
+        .collection('categories')
+        .doc(userId)
+        .update(data);
+  }
 }
