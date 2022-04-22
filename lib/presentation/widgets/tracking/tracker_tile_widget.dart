@@ -22,7 +22,7 @@ class TrackerTileWidget extends StatelessWidget {
         return TextButton(
             onPressed: () {
               BlocProvider.of<AddTrackingItemCubit>(context)
-                  .addTrackingItem(categoryId);
+                  .addTrackingItem(categoryId, name);
             },
             child:
                 CategoryTileWidget(id: categoryId, name: name, color: color));

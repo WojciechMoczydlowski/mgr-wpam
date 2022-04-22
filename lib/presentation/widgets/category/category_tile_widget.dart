@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wpam_app/utils/get_color_from_hex.dart';
 
 class CategoryTileWidget extends StatelessWidget {
   final String id;
@@ -12,7 +13,7 @@ class CategoryTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(int.parse(color.replaceAll('#', '0xff'))),
+      color: getColorFromHex(color),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [Text(name)],

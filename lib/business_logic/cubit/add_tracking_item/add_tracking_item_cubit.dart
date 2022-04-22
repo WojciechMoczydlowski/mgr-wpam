@@ -12,10 +12,12 @@ class AddTrackingItemCubit extends Cubit<AddTrackingItemState> {
   AddTrackingItemCubit(this.trackerRepository, this.trackerCubit)
       : super(AddTrackingItemInitial());
 
-  addTrackingItem(String categoryId) {
+  addTrackingItem(String categoryId, String categoryName) {
     emit(AddTrackingItemLoading());
 
-    trackerRepository.addTrackingItem(categoryId).then((trackingItem) {
+    trackerRepository
+        .addTrackingItem(categoryId, categoryName)
+        .then((trackingItem) {
       trackerCubit.addTrackingItem(trackingItem);
       emit(TrackingItemAdded());
     });
