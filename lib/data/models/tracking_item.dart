@@ -3,7 +3,7 @@ class TrackingItem {
   String categoryName;
   String categoryId;
   String color;
-  String date;
+  DateTime date;
 
   TrackingItem(
       {required this.id,

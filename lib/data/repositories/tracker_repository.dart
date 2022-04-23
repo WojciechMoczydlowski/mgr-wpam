@@ -17,7 +17,7 @@ class TrackerRepository {
             id: value['id'],
             categoryId: value['categoryId'],
             categoryName: value['categoryName'],
-            date: value['date'],
+            date: DateTime.parse(value['date']),
             color: value['color']);
       }));
 
@@ -39,7 +39,7 @@ class TrackerRepository {
         categoryId: categoryId,
         categoryName: categoryName,
         color: color,
-        date: currentDate.toString(),
+        date: currentDate,
       );
 
       trackingItems.add(newTrackingItem);
