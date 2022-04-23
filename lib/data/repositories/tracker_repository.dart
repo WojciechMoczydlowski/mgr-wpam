@@ -16,7 +16,9 @@ class TrackerRepository {
         return TrackingItem(
             id: value['id'],
             categoryId: value['categoryId'],
-            date: value['date']);
+            categoryName: value['categoryName'],
+            date: DateTime.parse(value['date']),
+            color: value['color']);
       }));
 
       return trackingItems;
@@ -25,14 +27,20 @@ class TrackerRepository {
     }
   }
 
-  Future<TrackingItem> addTrackingItem(String categoryId) async {
+  Future<TrackingItem> addTrackingItem(
+      String categoryId, String categoryName, String color) async {
     try {
       const uuid = Uuid();
       final currentDate = DateTime.now().add(const Duration(hours: 2));
 
       List<TrackingItem> trackingItems = await fetchTrackingItems();
       TrackingItem newTrackingItem = TrackingItem(
-          id: uuid.v1(), categoryId: categoryId, date: currentDate.toString());
+        id: uuid.v1(),
+        categoryId: categoryId,
+        categoryName: categoryName,
+        color: color,
+        date: currentDate,
+      );
 
       trackingItems.add(newTrackingItem);
 
