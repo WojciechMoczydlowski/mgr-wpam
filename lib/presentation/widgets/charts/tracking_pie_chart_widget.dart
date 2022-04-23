@@ -11,6 +11,10 @@ class TrackingPieChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (data.isEmpty) {
+      return const Center(child: Text("Brak danych"));
+    }
+
     _seriesPieData.add(
       charts.Series(
           data: data,

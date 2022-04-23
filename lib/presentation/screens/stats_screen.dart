@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wpam_app/business_logic/cubit/tracker/tracker_cubit.dart';
 import 'package:wpam_app/data/models/tracking_item.dart';
 import 'package:wpam_app/presentation/widgets/charts/tracking_pie_chart_widget.dart';
+import 'package:wpam_app/presentation/widgets/tracking/tracking_date_picker_widget.dart';
 import 'package:wpam_app/utils/get_color_from_hex.dart';
 import 'package:wpam_app/utils/is_same_date.dart';
 
@@ -16,9 +17,7 @@ class StatsScreen extends StatefulWidget {
 }
 
 class _StatsScreenState extends State<StatsScreen> {
-  DateTime currentDate = DateTime.now()
-      .add(const Duration(hours: 2))
-      .add(const Duration(hours: -24));
+  DateTime currentDate = DateTime.now().add(const Duration(hours: 2));
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +35,21 @@ class _StatsScreenState extends State<StatsScreen> {
           final pieChartData = mkChartData(
               filterTrackingItemsByDate(state.trackingItems, currentDate));
 
-          return TrackingPieChartWidget(
-            data: pieChartData,
+          return Column(
+            children: <Widget>[
+              Expanded(
+                flex: 2,
+                child: TrackingDatePickerWidget(
+                    date: currentDate,
+                    onChange: (date) => {setState(() => currentDate = date)}),
+              ),
+              Expanded(
+                flex: 10,
+                child: TrackingPieChartWidget(
+                  data: pieChartData,
+                ),
+              ),
+            ],
           );
         },
       ),
