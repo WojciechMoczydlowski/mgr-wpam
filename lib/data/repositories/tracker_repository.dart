@@ -14,11 +14,11 @@ class TrackerRepository {
       List<TrackingItem> trackingItems =
           List<TrackingItem>.from(rawTrackingItems['data'].map((value) {
         return TrackingItem(
-          id: value['id'],
-          categoryId: value['categoryId'],
-          categoryName: value['categoryName'],
-          date: value['date'],
-        );
+            id: value['id'],
+            categoryId: value['categoryId'],
+            categoryName: value['categoryName'],
+            date: value['date'],
+            color: value['color']);
       }));
 
       return trackingItems;
@@ -28,17 +28,19 @@ class TrackerRepository {
   }
 
   Future<TrackingItem> addTrackingItem(
-      String categoryId, String categoryName) async {
+      String categoryId, String categoryName, String color) async {
     try {
       const uuid = Uuid();
       final currentDate = DateTime.now().add(const Duration(hours: 2));
 
       List<TrackingItem> trackingItems = await fetchTrackingItems();
       TrackingItem newTrackingItem = TrackingItem(
-          id: uuid.v1(),
-          categoryId: categoryId,
-          date: currentDate.toString(),
-          categoryName: categoryName);
+        id: uuid.v1(),
+        categoryId: categoryId,
+        categoryName: categoryName,
+        color: color,
+        date: currentDate.toString(),
+      );
 
       trackingItems.add(newTrackingItem);
 
