@@ -25,4 +25,21 @@ class CategoryCubit extends Cubit<CategoryState> {
       emit(CategoryLoaded(categories));
     }
   }
+
+  toggleIsCategoryHidden(String id, bool hidden) {
+    final currentState = state;
+    if (currentState is CategoryLoaded) {
+      final categories = currentState.categories;
+      final index = categories.indexWhere((c) => c.id == id);
+
+      if (index != -1) {
+        emit(CategoryLoading());
+        categoryRepository.toggleIsCategoryHidden(id, hidden).then((category) =>
+            emit(CategoryLoaded(categories
+                .map((c) => c.id == category.id ? category : c)
+                .toList())));
+        // categoryRepository.emit(CategoryLoaded(categories));
+      }
+    }
+  }
 }

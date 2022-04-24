@@ -26,9 +26,11 @@ class CategoriesScreen extends StatelessWidget {
             child: Column(
               children: state.categories.map((category) {
                 return CategoryTileWidget(
-                    id: category.id,
-                    name: category.name,
-                    color: category.color);
+                  id: category.id,
+                  name: category.name,
+                  color: category.color,
+                  hidden: category.hidden,
+                );
               }).toList(),
             ),
           );

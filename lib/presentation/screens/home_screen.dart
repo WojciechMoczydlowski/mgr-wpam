@@ -23,7 +23,9 @@ class HomeScreen extends StatelessWidget {
 
           return SingleChildScrollView(
             child: Column(
-              children: state.categories.map((category) {
+              children: state.categories
+                  .where((category) => !category.hidden)
+                  .map((category) {
                 return TrackerTileWidget(
                     categoryId: category.id,
                     name: category.name,
