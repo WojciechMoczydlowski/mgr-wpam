@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wpam_app/business_logic/cubit/tracker/tracker_cubit.dart';
 import 'package:wpam_app/data/models/tracking_item.dart';
 import 'package:wpam_app/presentation/widgets/charts/tracking_pie_chart_widget.dart';
+import 'package:wpam_app/presentation/widgets/layout/bottom_navigation_widget.dart';
 import 'package:wpam_app/presentation/widgets/tracking/tracking_date_picker_widget.dart';
 import 'package:wpam_app/utils/get_color_from_hex.dart';
 import 'package:wpam_app/utils/is_same_date.dart';
@@ -17,7 +18,7 @@ class StatsScreen extends StatefulWidget {
 }
 
 class _StatsScreenState extends State<StatsScreen> {
-  DateTime currentDate = DateTime.now().add(const Duration(hours: 2));
+  DateTime currentDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class _StatsScreenState extends State<StatsScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text("Statystyki")),
+      bottomNavigationBar: const BottomNavigationWidget(),
       drawer: const NavigationDrawerWidget(),
       body: BlocBuilder<TrackerCubit, TrackerState>(
         builder: (blocContext, state) {

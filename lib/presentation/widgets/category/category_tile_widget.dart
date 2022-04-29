@@ -25,12 +25,11 @@ class CategoryTileWidget extends StatelessWidget {
             .toggleIsCategoryHidden(id, !hidden);
       },
       child: Container(
-        color: getColorFromHex(color),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(name),
+            Text(name, style: TextStyle(color: getColorFromHex(color))),
             Icon(
               hidden ? Icons.visibility_off : Icons.visibility,
               color: Colors.grey,
