@@ -40,13 +40,13 @@ class _StatsScreenState extends State<StatsScreen> {
           return Column(
             children: <Widget>[
               Expanded(
-                flex: 2,
+                flex: 1,
                 child: TrackingDatePickerWidget(
                     date: currentDate,
                     onChange: (date) => {setState(() => currentDate = date)}),
               ),
               Expanded(
-                flex: 10,
+                flex: 9,
                 child: TrackingPieChartWidget(
                   data: pieChartData,
                 ),
@@ -80,7 +80,8 @@ List<PieChartItem> mkChartData(List<TrackingItem> trackingItems) {
         trackingItem.categoryId,
         trackingItem.categoryName,
         24 * 60,
-        getColorFromHex(trackingItem.color)));
+        getColorFromHex(trackingItem.color),
+        trackingItem.categoryId));
 
     return pieChartData;
   }
@@ -96,8 +97,25 @@ List<PieChartItem> mkChartData(List<TrackingItem> trackingItems) {
         trackingItem.categoryId,
         trackingItem.categoryName,
         difference,
-        getColorFromHex(trackingItem.color)));
+        getColorFromHex(trackingItem.color),
+        trackingItem.categoryId));
   }
 
-  return pieChartData;
+  return reduceChartData(pieChartData);
+}
+
+List<PieChartItem> reduceChartData(List<PieChartItem> data) {
+  List<PieChartItem> newData = [];
+
+  for (var item in data) {
+    int prevItemIndex =
+        newData.indexWhere((newItem) => newItem.categoryId == item.categoryId);
+    if (prevItemIndex < 0) {
+      newData.add(item);
+    } else {
+      newData[prevItemIndex].period += item.period;
+    }
+  }
+
+  return newData;
 }
