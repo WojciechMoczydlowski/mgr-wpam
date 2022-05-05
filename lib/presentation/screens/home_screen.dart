@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
     BlocProvider.of<CategoryCubit>(context).fetchCategories();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Strona glówna")),
+      appBar: AppBar(title: const Text("Mierz")),
       bottomNavigationBar: const BottomNavigationWidget(),
       drawer: const NavigationDrawerWidget(),
       body: BlocBuilder<CategoryCubit, CategoryState>(
@@ -30,9 +30,10 @@ class HomeScreen extends StatelessWidget {
                     .where((category) => !category.hidden)
                     .map((category) {
                   return TrackerTileWidget(
-                      categoryId: category.id,
-                      name: category.name,
-                      color: category.color);
+                    categoryId: category.id,
+                    name: category.name,
+                    color: category.color,
+                  );
                 })).toList(),
           );
         },

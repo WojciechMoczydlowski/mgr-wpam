@@ -25,7 +25,7 @@ class _StatsScreenState extends State<StatsScreen> {
     BlocProvider.of<TrackerCubit>(context).fetchTrackingItems();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Statystyki")),
+      appBar: AppBar(title: const Text("Sprawdzaj")),
       bottomNavigationBar: const BottomNavigationWidget(),
       drawer: const NavigationDrawerWidget(),
       body: BlocBuilder<TrackerCubit, TrackerState>(
