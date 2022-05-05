@@ -14,7 +14,7 @@ class CategoriesScreen extends StatelessWidget {
     BlocProvider.of<CategoryCubit>(context).fetchCategories();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Dodaj kategorię")),
+      appBar: AppBar(title: const Text("Kategoryzuj")),
       bottomNavigationBar: const BottomNavigationWidget(),
       drawer: const NavigationDrawerWidget(),
       body: BlocBuilder<CategoryCubit, CategoryState>(

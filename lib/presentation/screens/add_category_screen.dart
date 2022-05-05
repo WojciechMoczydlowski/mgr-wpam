@@ -10,7 +10,7 @@ class AddCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Kategoryzuj")),
+        appBar: AppBar(title: const Text("Dodaj kategorię")),
         bottomNavigationBar: const BottomNavigationWidget(),
         body: BlocListener<AddCategoryCubit, AddCategoryState>(
           listener: (ctx, state) {
