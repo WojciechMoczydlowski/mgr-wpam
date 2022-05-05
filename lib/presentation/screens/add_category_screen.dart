@@ -18,8 +18,9 @@ class AddCategoryScreen extends StatelessWidget {
               Navigator.pop(context);
             }
           },
-          child: const Center(
-            child: AddCategoryForm(),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            child: const AddCategoryForm(),
           ),
         ));
   }

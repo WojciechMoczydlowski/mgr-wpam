@@ -25,10 +25,14 @@ class TrackerTileWidget extends StatelessWidget {
                   .addTrackingItem(categoryId, name, color);
             },
             child: Container(
-              color: getColorFromHex(color),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
               child: Row(
-                children: [Text(name)],
+                children: [
+                  Text(
+                    name,
+                    style: TextStyle(color: getColorFromHex(color)),
+                  )
+                ],
               ),
             ));
       },

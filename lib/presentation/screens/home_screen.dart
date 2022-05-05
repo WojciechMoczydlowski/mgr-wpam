@@ -23,17 +23,17 @@ class HomeScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          return SingleChildScrollView(
-            child: Column(
-              children: state.categories
-                  .where((category) => !category.hidden)
-                  .map((category) {
-                return TrackerTileWidget(
-                    categoryId: category.id,
-                    name: category.name,
-                    color: category.color);
-              }).toList(),
-            ),
+          return ListView(
+            children: ListTile.divideTiles(
+                context: context,
+                tiles: state.categories
+                    .where((category) => !category.hidden)
+                    .map((category) {
+                  return TrackerTileWidget(
+                      categoryId: category.id,
+                      name: category.name,
+                      color: category.color);
+                })).toList(),
           );
         },
       ),
