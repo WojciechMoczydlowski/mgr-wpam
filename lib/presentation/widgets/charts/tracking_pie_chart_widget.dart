@@ -38,7 +38,7 @@ class TrackingPieChartWidget extends StatelessWidget {
             behaviors: [
               charts.DatumLegend(
                 outsideJustification: charts.OutsideJustification.startDrawArea,
-                horizontalFirst: true,
+                horizontalFirst: false,
                 desiredMaxRows: 4,
                 cellPadding: const EdgeInsets.only(right: 4.0, bottom: 4.0),
               )

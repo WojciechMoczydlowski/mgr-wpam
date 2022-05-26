@@ -8,8 +8,6 @@ import 'package:wpam_app/presentation/widgets/tracking/tracking_date_picker_widg
 import 'package:wpam_app/utils/get_color_from_hex.dart';
 import 'package:wpam_app/utils/is_same_date.dart';
 
-import '../widgets/layout/navigation_drawer_widget.dart';
-
 class StatsScreen extends StatefulWidget {
   const StatsScreen({Key? key}) : super(key: key);
 
@@ -25,9 +23,11 @@ class _StatsScreenState extends State<StatsScreen> {
     BlocProvider.of<TrackerCubit>(context).fetchTrackingItems();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Sprawdzaj")),
+      appBar: AppBar(
+          title: const Text("Sprawdzaj"),
+          centerTitle: true,
+          automaticallyImplyLeading: false),
       bottomNavigationBar: const BottomNavigationWidget(),
-      drawer: const NavigationDrawerWidget(),
       body: BlocBuilder<TrackerCubit, TrackerState>(
         builder: (blocContext, state) {
           if (state is! TrackerLoaded) {
@@ -49,6 +49,13 @@ class _StatsScreenState extends State<StatsScreen> {
                 flex: 9,
                 child: TrackingPieChartWidget(
                   data: pieChartData,
+                ),
+              ),
+              const Expanded(
+                flex: 1,
+                child: Text(
+                  "Czas podany jest w minutach",
+                  style: TextStyle(color: Colors.grey),
                 ),
               ),
             ],

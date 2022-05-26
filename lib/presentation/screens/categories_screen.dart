@@ -4,7 +4,6 @@ import 'package:wpam_app/business_logic/cubit/category/category_cubit.dart';
 import 'package:wpam_app/presentation/router/routes.dart';
 import 'package:wpam_app/presentation/widgets/category/category_tile_widget.dart';
 import 'package:wpam_app/presentation/widgets/layout/bottom_navigation_widget.dart';
-import 'package:wpam_app/presentation/widgets/layout/navigation_drawer_widget.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -14,9 +13,11 @@ class CategoriesScreen extends StatelessWidget {
     BlocProvider.of<CategoryCubit>(context).fetchCategories();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Kategoryzuj")),
+      appBar: AppBar(
+          title: const Text("Kategoryzuj"),
+          centerTitle: true,
+          automaticallyImplyLeading: false),
       bottomNavigationBar: const BottomNavigationWidget(),
-      drawer: const NavigationDrawerWidget(),
       body: BlocBuilder<CategoryCubit, CategoryState>(
         builder: (blocContext, state) {
           if (state is! CategoryLoaded) {
