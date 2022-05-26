@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wpam_app/business_logic/cubit/add_tracking_item/add_tracking_item_cubit.dart';
-import 'package:wpam_app/presentation/widgets/category/category_tile_widget.dart';
+import 'package:wpam_app/utils/get_color_from_hex.dart';
 
 class TrackerTileWidget extends StatelessWidget {
   final String categoryId;
@@ -24,8 +24,17 @@ class TrackerTileWidget extends StatelessWidget {
               BlocProvider.of<AddTrackingItemCubit>(context)
                   .addTrackingItem(categoryId, name, color);
             },
-            child:
-                CategoryTileWidget(id: categoryId, name: name, color: color));
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+              child: Row(
+                children: [
+                  Text(
+                    name,
+                    style: TextStyle(color: getColorFromHex(color)),
+                  )
+                ],
+              ),
+            ));
       },
     );
   }

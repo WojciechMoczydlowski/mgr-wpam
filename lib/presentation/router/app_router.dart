@@ -57,10 +57,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
             value: _categoryCubit,
-            child: BlocProvider(
-              create: (BuildContext context) =>
-                  AddTrackingItemCubit(_trackerRepository, _trackerCubit),
-              child: const HomeScreen(),
+            child: BlocProvider.value(
+              value: _trackerCubit,
+              child: BlocProvider(
+                create: (BuildContext context) =>
+                    AddTrackingItemCubit(_trackerRepository, _trackerCubit),
+                child: const HomeScreen(),
+              ),
             ),
           ),
         );

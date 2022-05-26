@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:wpam_app/services/firestore_users.dart';
 
 class CategoryAPI {
-  Future<dynamic> featchRawCategories() async {
+  Future<dynamic> fetchRawCategories() async {
     return FirebaseFirestore.instance
         .collection('categories')
         .doc(userId)

@@ -12,7 +12,6 @@ class TrackingDatePickerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Wybrana data: ${date.day}:${date.month}/${date.year}'),
         ElevatedButton(
             onPressed: () async {
               DateTime? newDate = await showDatePicker(
@@ -25,7 +24,7 @@ class TrackingDatePickerWidget extends StatelessWidget {
 
               onChange(newDate);
             },
-            child: const Text('Wybierz datę'))
+            child: Text('Wybrana data: ${date.year}-${date.month}-${date.day}'))
       ],
     );
   }

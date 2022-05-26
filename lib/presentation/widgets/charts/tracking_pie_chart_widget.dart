@@ -30,7 +30,6 @@ class TrackingPieChartWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       child: Center(
         child: Column(children: <Widget>[
-          const Text("Czas spędzony na dziennych czynnościach"),
           Expanded(
               child: charts.PieChart<String>(
             _seriesPieData,
@@ -38,14 +37,11 @@ class TrackingPieChartWidget extends StatelessWidget {
             animationDuration: const Duration(seconds: 2),
             behaviors: [
               charts.DatumLegend(
-                  outsideJustification: charts.OutsideJustification.endDrawArea,
-                  horizontalFirst: false,
-                  desiredMaxRows: 2,
-                  cellPadding: const EdgeInsets.only(right: 4.0, bottom: 4.0),
-                  entryTextStyle: charts.TextStyleSpec(
-                    color: charts.MaterialPalette.purple.shadeDefault,
-                    fontSize: 11,
-                  ))
+                outsideJustification: charts.OutsideJustification.startDrawArea,
+                horizontalFirst: false,
+                desiredMaxRows: 4,
+                cellPadding: const EdgeInsets.only(right: 4.0, bottom: 4.0),
+              )
             ],
             defaultRenderer: charts.ArcRendererConfig(
                 arcWidth: 100,
@@ -64,7 +60,8 @@ class PieChartItem {
   String id;
   String label;
   int period;
+  String categoryId;
   Color color;
 
-  PieChartItem(this.id, this.label, this.period, this.color);
+  PieChartItem(this.id, this.label, this.period, this.color, this.categoryId);
 }

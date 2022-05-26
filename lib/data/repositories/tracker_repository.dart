@@ -17,7 +17,7 @@ class TrackerRepository {
             id: value['id'],
             categoryId: value['categoryId'],
             categoryName: value['categoryName'],
-            date: DateTime.parse(value['date']),
+            date: DateTime.parse(value['date'].toDate().toString()),
             color: value['color']);
       }));
 
@@ -31,7 +31,7 @@ class TrackerRepository {
       String categoryId, String categoryName, String color) async {
     try {
       const uuid = Uuid();
-      final currentDate = DateTime.now().add(const Duration(hours: 2));
+      final currentDate = DateTime.now();
 
       List<TrackingItem> trackingItems = await fetchTrackingItems();
       TrackingItem newTrackingItem = TrackingItem(
